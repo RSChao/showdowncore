@@ -1,0 +1,5 @@
+name: ShowdownCore
+version: '1.0'
+main: com.rschao.plugins.showdowncore.showdownCore.ShowdownCore
+api-version: '1.21'
+load: POSTWORLD

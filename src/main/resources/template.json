@@ -1,0 +1,21 @@
+{
+  "description": "",
+  "supported_items": "",
+  "weight": 1,
+  "max_level": 1,
+  "min_cost": {
+    "base": 7,
+    "per_level_above_first": 1
+  },
+  "max_cost": {
+    "base": 8,
+    "per_level_above_first": 5
+  },
+  "anvil_cost":10,
+  "slots": [
+    "mainhand"
+  ],
+  "exclusive_set": [
+    ""
+  ]
+}
