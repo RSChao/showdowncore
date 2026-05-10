@@ -3,7 +3,9 @@ package com.rschao.plugins.showdowncore.showdownCore.api.items.registry;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ItemRegistry {
@@ -20,6 +22,13 @@ public class ItemRegistry {
         String[] parts = key.split(":");
         NamespacedKey namespacedKey = new NamespacedKey(parts[0], parts[1]);
         items.put(namespacedKey, item);
+    }
+    public static List<String> getRegisteredItems() {
+        List<String> itemList = new ArrayList<>();
+        for (NamespacedKey key : items.keySet()) {
+            itemList.add(key.getNamespace() + ":" + key.getKey());
+        }
+        return itemList;
     }
 
 

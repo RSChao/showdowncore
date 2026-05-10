@@ -12,21 +12,56 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.IOException;
+
 public abstract class EasyEnchant implements Listener {
     private final NamespacedKey key;
+    private CustomEnchantment customEnchantment;
     public EasyEnchant(String key) {
         this.key = NamespacedKey.minecraft(key);
+        this.customEnchantment = new CustomEnchantment("minecraft", key + ".json");
+    }
+    public EasyEnchant(String key, String display) {
+        this.key = NamespacedKey.minecraft(key);
+        this.customEnchantment = makeEnchantment(display);
+        saveBukkitEnchantment(customEnchantment);
+    }
+    public EasyEnchant(String key, String namespace, String display) {
+        this.key = NamespacedKey.minecraft(key);
+        this.customEnchantment = makeEnchantment(namespace, display);
+        saveBukkitEnchantment(customEnchantment);
     }
 
     public CustomEnchantment makeEnchantment(String displayName) {
         CustomEnchantment bukkitEnchant = new CustomEnchantment("minecraft", key.getKey() + ".json");
         bukkitEnchant.setDescription(displayName);
+        this.customEnchantment = bukkitEnchant;
+        return bukkitEnchant;
+    }
+
+    public CustomEnchantment makeEnchantment(String namespace, String displayName) {
+        CustomEnchantment bukkitEnchant = new CustomEnchantment(namespace, key.getKey() + ".json");
+        bukkitEnchant.setDescription(displayName);
+        this.customEnchantment = bukkitEnchant;
         return bukkitEnchant;
     }
 
     public void saveBukkitEnchantment(CustomEnchantment e) {
-        e.save(SaveMode.IF_NEW);
+        try{
+            e.save(SaveMode.IF_NEW);
+        } catch (Exception ex) {
+
+        }
+        this.customEnchantment = e;
         EnchantmentRegistry.registerEnchantment(e);
+    }
+    @Deprecated
+    public void setCustomEnchantment(CustomEnchantment customEnchantment) {
+        this.customEnchantment = customEnchantment;
+    }
+
+    public CustomEnchantment getCustomEnchantment() {
+        return customEnchantment;
     }
 
     public boolean hasEnchantment(ItemStack item) {

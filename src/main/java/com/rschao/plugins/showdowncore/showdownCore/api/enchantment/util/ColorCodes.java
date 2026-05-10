@@ -23,9 +23,11 @@ public enum ColorCodes {
     STRIKETHROUGH("§m"),
     RESET("§r");
 
-    private String code;
+    private final String code;
+    private final String toString;
     ColorCodes(String code) {
         this.code = code;
+        this.toString = code;
     }
 
     public String getCode() {
@@ -34,6 +36,6 @@ public enum ColorCodes {
 
     @Override
     public String toString() {
-        return code;
+        return toString;
     }
 }
