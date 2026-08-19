@@ -22,9 +22,9 @@ public class JsonSave {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        String path = Bukkit.getWorlds().get(0).getWorldFolder().toString();
-        if(path.contains("/dimensions/overworld")){
-            path = path.replace("/dimenstons/overworld", "");
+        String path = Bukkit.getWorlds().getFirst().getWorldFolder().toString();
+        if(path.contains("dimensions")){
+            path = path.replace("\\", "/").replace("/dimensions/minecraft/overworld", "");
         }
         File ench = new File(path + "/datapacks/ssmp/data/" + e.getEnchantmentNamespace() + "/enchantment/" + e.getEnchantmentName() + ".json");
         if(mode == SaveMode.IF_NEW && ench.isFile()) return;
