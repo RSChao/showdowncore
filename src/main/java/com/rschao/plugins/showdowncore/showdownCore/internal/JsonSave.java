@@ -25,10 +25,8 @@ public class JsonSave {
         String path = Bukkit.getWorlds().getFirst().getWorldFolder().toString();
         if(path.contains("dimensions")){
             path = (Bukkit.getWorldContainer().getAbsolutePath() + Bukkit.getWorlds().getFirst().getName()).replace(File.pathSeparator, "/").replace(".", "").replace(File.separator, "/");
-            Bukkit.getLogger().severe("World path: "+ path);
         }
         File ench = new File(path + "/datapacks/ssmp/data/" + e.getEnchantmentNamespace() + "/enchantment/" + e.getEnchantmentName() + ".json");
-        Bukkit.getLogger().warning(path + "/datapacks/ssmp/data/" + e.getEnchantmentNamespace() + "/enchantment/" + e.getEnchantmentName() + ".json");
 
         if(mode == SaveMode.IF_NEW && ench.isFile()) return;
         ench.mkdirs();
