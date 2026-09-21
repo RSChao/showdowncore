@@ -1,0 +1,23 @@
+lore:
+  # Template for information about the campaign
+  campaign:
+    name: ""
+    description: {}
+    release_date: ""
+    location:
+      world: ""
+      x: 0
+      y: 0
+      z: 0
+      text: ""
+    item_model: ""
+    bosses:
+      total: 0
+      multiphase: 0
+      multiphase_above3: 0
+    key_items: {}
+    difficulty:
+      hints: ""
+      bosses: ""
+    challenge: false
+    translated: false
